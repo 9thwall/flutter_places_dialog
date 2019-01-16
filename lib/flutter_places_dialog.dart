@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
-
-enum PriceLevel { Unknown, Free, Cheap, Medium, High, Expensive }
 
 class PlaceLatLong {
   const PlaceLatLong({
@@ -52,16 +49,12 @@ class PlaceDetails {
       this.location,
       this.name,
       this.phoneNumber,
-      this.priceLevel,
-      this.rating,
       this.bounds});
   String address;
   String placeid;
   PlaceLatLong location;
   String name;
   String phoneNumber;
-  PriceLevel priceLevel;
-  num rating;
   PlaceBounds bounds;
 }
 
