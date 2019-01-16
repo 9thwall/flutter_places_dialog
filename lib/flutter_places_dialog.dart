@@ -83,43 +83,22 @@ class FlutterPlacesDialog {
   static Future<PlaceDetails> getPlacesDialog({
     PlaceBounds bounds,
   }) async {
-    print('Opening places dialog');
+    print('Opening places dialoger');
+
     Map<dynamic, dynamic> data =
         await _channel.invokeMethod("showPlacesPicker", {
       "bounds": bounds?.toJson(),
     });
-    print("Places data $data");
-    PlaceDetails details = new PlaceDetails();
+
+
+    print("Places data $data | ${data['name']}");
+    PlaceDetails details = PlaceDetails();
     details.name = data["name"];
     details.address = data["address"];
     details.placeid = data["placeid"];
-    details.location = new PlaceLatLong.fromJson(data);
+    //details.location = new PlaceLatLong.fromJson(data);
     details.phoneNumber = data["phoneNumber"];
-    switch (data["priceLevel"]) {
-      case -1:
-        details.priceLevel = PriceLevel.Unknown;
-        break;
-      case 0:
-        details.priceLevel = PriceLevel.Free;
-        break;
-      case 1:
-        details.priceLevel = PriceLevel.Cheap;
-        break;
-      case 2:
-        details.priceLevel = PriceLevel.Medium;
-        break;
-      case 3:
-        details.priceLevel = PriceLevel.High;
-        break;
-      case 4:
-        details.priceLevel = PriceLevel.Expensive;
-        break;
-      default:
-        details.priceLevel = PriceLevel.Unknown;
-        break;
-    }
-    details.rating = data["rating"];
-    details.bounds = new PlaceBounds.fromJson(data['bounds']);
+    //details.bounds = new PlaceBounds.fromJson(data['bounds']);
     return details;
   }
 }
