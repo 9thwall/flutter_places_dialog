@@ -73,18 +73,15 @@ class FlutterPlacesDialog {
     return ret;
   }
 
-  static Future<PlaceDetails> getPlacesDialog({
-    PlaceBounds bounds,
-  }) async {
+  static Future<PlaceDetails> getPlacesDialog({ PlaceBounds bounds }) async {
     print('Opening places dialoger');
 
-    Map<dynamic, dynamic> data =
-        await _channel.invokeMethod("showPlacesPicker", {
+    Map<dynamic, dynamic> data = await _channel.invokeMethod("showPlacesPicker", {
       "bounds": bounds?.toJson(),
     });
 
 
-    print("Places data $data | ${data['name']}");
+    print("Places data $data");
     PlaceDetails details = PlaceDetails();
     details.name = data["name"];
     details.address = data["address"];
