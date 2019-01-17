@@ -59,8 +59,7 @@ class PlaceDetails {
 }
 
 class FlutterPlacesDialog {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_places_dialog');
+  static const MethodChannel _channel = const MethodChannel('flutter_places_dialog');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
@@ -74,7 +73,7 @@ class FlutterPlacesDialog {
   }
 
   static Future<PlaceDetails> getPlacesDialog({ PlaceBounds bounds }) async {
-    print('Opening places dialoger');
+    print('Opening places dialog (New)');
 
     Map<dynamic, dynamic> data = await _channel.invokeMethod("showPlacesPicker", {
       "bounds": bounds?.toJson(),

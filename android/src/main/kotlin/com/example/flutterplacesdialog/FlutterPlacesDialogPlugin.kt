@@ -68,8 +68,9 @@ class FlutterPlacesDialogPlugin(val activity: Activity) : MethodCallHandler, io.
         System.out.println("onActivityResult " + requestCode + " " + resultCode);
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
+                
                 if (data == null) {
-                    System.out.println("data is null!!!!");
+                    System.out.println("data is null!");
                 }
                 var selectedPlace = PlacePicker.getPlace(this.activity, data)
                 var northeast = mapOf(
@@ -102,13 +103,13 @@ class FlutterPlacesDialogPlugin(val activity: Activity) : MethodCallHandler, io.
                 return true
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (data == null) {
-                    System.out.println("data is null!!!! RESULT_CANCELED");
+                    System.out.println("data is null!! RESULT_CANCELED");
                 }
                 placeResult?.error("PICK_FAILED", "Error getting place", null);
                 return true
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 if (data == null) {
-                    System.out.println("data is null!!!! RESULT_ERROR");
+                    System.out.println("data is null!! RESULT_ERROR");
                 }
                 System.out.println(PlaceAutocomplete.getStatus(this.activity, data));
                 placeResult?.error("PICK_FAILED", "Invalid API Code: "
